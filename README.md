@@ -18,6 +18,8 @@ C3 51.19 101.13  90 0.1uF 0603-NO
 
 To acccomplish this. Please make sure the units are in mm (milimeters).
 
+![alt text](https://github.com/ubopod/QM1100/blob/main/images/export_mnt.png?raw=true)
+
 2. Setup the feeder file
 
 We need to tell the machine on which feeder is each component mounted and provide some meta data on each feeder. This part needs to be done manually
