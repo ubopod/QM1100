@@ -1,6 +1,8 @@
 # QM-1100
 This repo includes scripts and instructions to program QM1100 Pick and Place Machine manufactured by SMT Max. We used these scripts to protoypes Ubo PCBs and wanted to share them with maker community.
 
+WORK IN PROGRESS
+
 ## Overview
 
 In order to prepare the PnP machine, several steps must be taken. We will walk you through these steps below:
