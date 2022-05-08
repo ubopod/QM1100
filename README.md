@@ -77,6 +77,40 @@ python3 qm1100_v2.py <feeders.csv> <smd_mounting_coord.mnt> <output.csv> pcb_ori
 
 The formula takes comma seperated feeder list as the first argument, mounting coordinates list exported from eagle, and outputs parts list that includes all parts, placement coordinates in machine unit, correct amount of rotation for each part, etc. This list will then uploaded to the machine along with feeder list to configure it.
 
+Here's an example of the output parts list:
+
+```
+# Part Numer, X, Y, Z, A, Feeder, Vision, File, Skip, Pause, Notes, IC, Component
+C1,-9897,1600,700,-2000,51,No,C1.tif,No,0,None,No,10uF-0805-NO
+C2,-9812,2446,700,0,42,No,C2.tif,No,0,None,No,0.1uF-0603-NO
+C3,-9818,2267,700,0,51,No,C3.tif,No,0,None,No,10uF-0805-NO
+C4,-9713,1605,700,-2000,39,No,C4.tif,No,0,None,No,33pF-0603-NO
+....
+```
+
+Each line in the parts list has a number of features/columns:
+
+- Part Number: An unique id used to identify a part type & the feeder containing it.
+- X: The X position of placement, in machine units.
+- Y: The Y position of placement, in machine units.
+- Z: The Z position of placement, in machine units.
+- A: The rotation of the part upon placement, relative to its pickup rotation, in degrees.
+- Feeder: The feeder number (id) used to find the part.
+- Vision: Whether to use the vision system to validate placement, either yes or no.
+- File: If Vision is marked yes, then this feature selects the reference photo to be used for vision checking.
+- Skip: Whether the sequence should be performed during operation, either yes or no.
+- Pause: How many microseconds to pause when the part is placed.
+- Notes: Notes for the operator.
+- IC: Whether to use customized speed control (under the IC panel) instead of the default, either yes or no. Useful when the default speed might cause the part to slip.
+- Component: Presently unused by the machine but we populated it with part value concatenated with package 
+
+IMPORTANT: The unit of conversion from standard units to QM internal units is as follows:
+
+|1 inch | 2000 steps |
+| ------------- | ------------- |
+|90 degrees | 2000 steps |
+
+The PCB orientation angle provided to the `qm1100_v2.py` script (`pcb_orientation_degrees`) is the amount of rotation needed clockwise to rotate PCB from eagle orientation to orientation on the pick and place bed. For example, the axis of the PCB in the EAGLE board layout must rotate 90 degrees clockwise so that the PCB has the postion shown in the image below on the PnP machine bed.
 
 | Orientation on the machine| Orientation in Eagle |
 | ------------- | ------------- |
