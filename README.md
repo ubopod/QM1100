@@ -77,6 +77,14 @@ python3 qm1100_v2.py <feeders.csv> <smd_mounting_coord.mnt> <output.csv> pcb_ori
 
 The formula takes comma seperated feeder list as the first argument, mounting coordinates list exported from eagle, and outputs parts list that includes all parts, placement coordinates in machine unit, correct amount of rotation for each part, etc. This list will then uploaded to the machine along with feeder list to configure it.
 
+The PCB orientation angle provided to the `qm1100_v2.py` script (`pcb_orientation_degrees`) is the amount of rotation needed clockwise to rotate PCB from eagle orientation to orientation on the pick and place bed. For example, the axis of the PCB in the EAGLE board layout must rotate 90 degrees clockwise so that the PCB has the postion shown in the image below on the PnP machine bed.
+
+| Orientation on the machine| Orientation in Eagle |
+| ------------- | ------------- |
+| ![alt text](https://github.com/ubopod/QM1100/blob/main/images/pnp_pcb_orientation.png?raw=true)  | ![alt text](https://github.com/ubopod/QM1100/blob/main/images/eagle_pcb_orientation.png?raw=true) |
+
+### 5. Inspect the output parts file
+
 Here's an example of the output parts list:
 
 ```
@@ -110,14 +118,8 @@ IMPORTANT: The unit of conversion from standard units to QM internal units is as
 | ------------- | ------------- |
 |90 degrees | 2000 steps |
 
-The PCB orientation angle provided to the `qm1100_v2.py` script (`pcb_orientation_degrees`) is the amount of rotation needed clockwise to rotate PCB from eagle orientation to orientation on the pick and place bed. For example, the axis of the PCB in the EAGLE board layout must rotate 90 degrees clockwise so that the PCB has the postion shown in the image below on the PnP machine bed.
+### 6. Program the machine 
 
-| Orientation on the machine| Orientation in Eagle |
-| ------------- | ------------- |
-| ![alt text](https://github.com/ubopod/QM1100/blob/main/images/pnp_pcb_orientation.png?raw=true)  | ![alt text](https://github.com/ubopod/QM1100/blob/main/images/eagle_pcb_orientation.png?raw=true) |
-
-### 5. inspect the output parts file
-### 6. program the machine 
-#### 6.1. upload feeder file
-#### 6.2. upload parts file 
-#### 6.3. set board offset
+#### 6.1. Upload feeder file
+#### 6.2. Upload parts file 
+#### 6.3. Set board offset
