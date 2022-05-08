@@ -53,15 +53,30 @@ Here's a short description of each value on each column:
   11. Whether the component is an IC. Default is No.
   12. Calculating the rotation angle
 
-This is a tricky part that requires some geometic imagination. Orientation of the part on the feeder and orientation of the board, as well as rotation direction (CW/CCW) of the machine picking head.
+This can be a tricky to detemine feeder angle and it requires some geometic imagination. 
 
-Basically the match can be formulated as:
+It is basically the amount of rotation (Clock Wise) that the pickup nozzle must make after it picks up the part from the feeder to place it with correct orientaton on the board. The orientation for passive components such as resistors and ceramin capacitors can be offset by 180 degree and still not cause any problems electrically. 
+
+However, orientation of diodes, LEDS, ICS, etc must be calculated with care. The positional angle of parts on PCB is calcuated by EAGLE (included in the .mnt file) based on a cartesian coordiate with an origin marketed with cross sign on the board layout. 
+
+Basically the amount of rotation nozzle must make to correctly place a part after it picks it up from the feeder can be calculated as:
 
 ```
-Head rotation angle = ( feeder angle - part angle on PCB ) % 360
+Head rotation angle = ( part angle position on the feer - part angle of position on PCB ) % 360
 ```
+
+The best way derive part angle for each feer is to imagin picking that component by hand and having to rotate it clockwise before placing it on the board and imagine the amount of rotation needed to place it correctly on the PCB for a given part on PCB coming from the target feeder. This feed this number on the left hand side of the above formula and also add part angle from .mnt file into the formula and calculate part angle on feeder. You can re-try this for different parts from the same feeder to make sure formula gives you the right amount of rotation based on the value derived for the first component (place note that the part feeder angle is a constant and works like and offset value for all parts coming from that feeder).
 
 ### 4. run script
+
+In order to generate the part list to prgram the machine with
+
+```
+python3 qm1100_v2.py <feeders.csv> <smd_mounting_coord.mnt> <output.csv> pcb_orientation_degrees
+```
+
+The formula takes comma seperated feeder list as the first argument, mounting coordinates list exported from eagle, and outputs parts list that includes all parts, placement coordinates in machine unit, correct amount of rotation for each part, etc. This list will then uploaded to the machine along with feeder list to configure it.
+
 
 | Orientation on the machine| Orientation in Eagle |
 | ------------- | ------------- |
