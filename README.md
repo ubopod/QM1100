@@ -22,6 +22,15 @@ To acccomplish this, go to ` File > Export > Mount SMD` in your board/layout win
 
 Please make sure the units are in mm (milimeters).The unit will follow the unit you have set in your layout grid. 
 
+Each line in the '.mnt' file, includes the following values in order:
+
+- Part Number: An unique id used to identify a part type & the feeder containing it.
+- X: The X position of placement, in mm units.
+- Y: The Y position of placement, in mm units.
+- A: The rotation of the part in degrees.
+- V: Part value 
+- P: Part package
+
 ![alt text](https://github.com/ubopod/QM1100/blob/main/images/export_mnt.png?raw=true)
 
 The export operation will give you two files, one for top side components and another for bottom side components. Since our design is one-sides and the machine only support single-sided placement, we will ignore the bottom `.mnt` file.
