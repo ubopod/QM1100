@@ -92,6 +92,16 @@ The PCB orientation angle provided to the `qm1100_v2.py` script (`pcb_orientatio
 | ------------- | ------------- |
 | ![alt text](https://github.com/ubopod/QM1100/blob/main/images/pnp_pcb_orientation.png?raw=true)  | ![alt text](https://github.com/ubopod/QM1100/blob/main/images/eagle_pcb_orientation.png?raw=true) |
 
+
+In this example, we are generating the pars list with the following command. Please note that according to the PCB setup on the machine, we must enter rotation angle of 90 degrees clockwise to match the current PCB orientation. 
+
+```
+> python3 QM1100_v2.py Ubo_v1.4_rear_feeder.fds Ubo_v1.4_variant_2.mnt Ubo_v1.4_parts.pts 90
+
+Wrote output file "Ubo_v1.4_parts.pts"
+```
+
+
 ### 5. Inspect the output parts file
 
 Here's an example of the output parts list:
